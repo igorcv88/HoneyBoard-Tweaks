@@ -25,6 +25,11 @@ No proprietary code or APK is included in the repository.
 | Delete | k2.r.a(long) | Native row and media cleanup |
 | Notify | u1.f0.i(int) | Notify native content observers |
 | Settings visibility | CommonSettingsFragmentCompat.isPreferenceVisible(String) | Reveal individually chosen preferences |
+| Native undo | fa0.l.a(Object), inherited fa0.a.i() | Keys Cafe undo action and eligibility check |
+| Native redo | fa0.j.a(Object), inherited fa0.a.i() | Keys Cafe redo action and eligibility check |
+| Native key dispatch | jh.a.sendKeyEvent(KeyEvent) | Count events during one history action only |
+| Post-insertion count | k2.h.b(Clip), k2.h.a(int) | Count native rows after insertion without replay on diagnostic failure |
+| Panel data count | ClipboardViewModel.getClipItems() | Native view-model list size, not number of rendered tiles |
 
 Stock q reads the per-user DAO list and removes the first unpinned item at the
 stock limit. Origin 1/2 insertion also removes prior items with matching origin.

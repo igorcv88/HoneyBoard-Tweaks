@@ -47,6 +47,8 @@ public final class MainActivity extends Activity {
         toggle(toolbar, "Enable toolbar actions", "toolbar", true);
         for (EditAction action : EditAction.values())
             toggle(toolbar, action.label, "action_" + action.key, action.defaultEnabled);
+        toggle(toolbar, "Use editor shortcuts for undo/redo", "history_shortcuts", false);
+        toggle(toolbar, "Shortcut redo: Ctrl+Shift+Z instead of Ctrl+Y", "redo_shift_z", false);
         text(toolbar, "Undo and redo depend on the current app’s editor.", 13, 0xffabb4c4);
         LinearLayout clipboard = card("Clipboard");
         toggle(clipboard, "Extend native clipboard history", "clipboard", true);

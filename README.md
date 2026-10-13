@@ -45,9 +45,18 @@ The only supported base APK is Honeyboard **5.9.40.75**:
 Other APKs are left untouched by the hooks. No Samsung APK patching or database migration
 is performed. The module requests no permissions and has no network access.
 
-Undo/Redo use native context-menu commands. Some editors do not support them; a short
-message is shown if the editor rejects the command. The module does not capture text or
-implement an artificial undo stack. Logs contain feature stages and exception types only.
+Undo/Redo use DZIF's native Keys Cafe gesture actions, including Ctrl+Z/Ctrl+Y,
+Samsung engine cleanup and eligibility checks. The keyboard may block them while
+composing or editing an internal field. Commit the current word with a space before testing.
+A compatibility switch uses editor shortcuts directly; redo can be Ctrl+Y or Ctrl+Shift+Z.
+The module never replays an action through another route after native execution begins.
+Event acceptance does not prove that an editor changed its text.
+No artificial undo stack or editor text snapshots are created.
+
+Each click is logged with an attempt number and dispatch outcome. Clipboard diagnostics
+record database counts after insertion and counts returned by the native view model.
+Logs contain no copied/typed text and are available in LSPosed and logcat.
+See [runtime diagnostics](docs/runtime-diagnostics.md).
 
 ## Build and verification
 
