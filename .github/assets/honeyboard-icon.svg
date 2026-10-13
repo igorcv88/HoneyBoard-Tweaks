@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 108 108" role="img" aria-labelledby="title desc">
+<title id="title">HoneyBoard Tweaks app icon</title>
+<desc id="desc">Blue and violet illuminated keyboard with a small sparkle on a dark indigo background.</desc>
+<defs>
+<linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#101C36"/><stop offset=".6" stop-color="#10172D"/><stop offset="1" stop-color="#241B42"/></linearGradient>
+<radialGradient id="light"><stop stop-color="#487CF7" stop-opacity=".48"/><stop offset="1" stop-color="#487CF7" stop-opacity="0"/></radialGradient>
+<linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#294579"/><stop offset=".6" stop-color="#23345F"/><stop offset="1" stop-color="#493775"/></linearGradient>
+<linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#80EDFF"/><stop offset="1" stop-color="#A38CFF"/></linearGradient>
+</defs>
+<rect width="108" height="108" rx="24" fill="url(#background)"/>
+<circle cx="46" cy="48" r="56" fill="url(#light)"/>
+<path d="M32.5 29.5H75.5A13 13 0 0 1 88.5 42.5V68.5A13 13 0 0 1 75.5 81.5H32.5A13 13 0 0 1 19.5 68.5V42.5A13 13 0 0 1 32.5 29.5Z" fill="#72AAFF" opacity=".16"/>
+<path d="M32 32H76A10 10 0 0 1 86 42V69A10 10 0 0 1 76 79H32A10 10 0 0 1 22 69V42A10 10 0 0 1 32 32Z" fill="url(#panel)" stroke="#80DFFF" stroke-width="1.5"/>
+<path d="M33 36H75A7 7 0 0 1 82 43V68A7 7 0 0 1 75 75H33A7 7 0 0 1 26 68V43A7 7 0 0 1 33 36Z" fill="#13243E" stroke="#87A2FF" stroke-opacity=".65" stroke-width=".6"/>
+<path d="M31.25 37H76.75A1.25 1.25 0 0 1 78 38.25V38.25A1.25 1.25 0 0 1 76.75 39.5H31.25A1.25 1.25 0 0 1 30 38.25V38.25A1.25 1.25 0 0 1 31.25 37Z" fill="url(#accent)" opacity=".9"/>
+<path d="M31 43H34.6A1.5 1.5 0 0 1 36.1 44.5V47.5A1.5 1.5 0 0 1 34.6 49H31A1.5 1.5 0 0 1 29.5 47.5V44.5A1.5 1.5 0 0 1 31 43Z" fill="#73D6FF"/>
+<path d="M39.8 43H43.4A1.5 1.5 0 0 1 44.9 44.5V47.5A1.5 1.5 0 0 1 43.4 49H39.8A1.5 1.5 0 0 1 38.3 47.5V44.5A1.5 1.5 0 0 1 39.8 43Z" fill="#D5F5FF"/>
+<path d="M48.6 43H52.2A1.5 1.5 0 0 1 53.7 44.5V47.5A1.5 1.5 0 0 1 52.2 49H48.6A1.5 1.5 0 0 1 47.1 47.5V44.5A1.5 1.5 0 0 1 48.6 43Z" fill="#95B4FF"/>
+<path d="M57.4 43H61A1.5 1.5 0 0 1 62.5 44.5V47.5A1.5 1.5 0 0 1 61 49H57.4A1.5 1.5 0 0 1 55.9 47.5V44.5A1.5 1.5 0 0 1 57.4 43Z" fill="#73D6FF"/>
+<path d="M66.2 43H69.8A1.5 1.5 0 0 1 71.3 44.5V47.5A1.5 1.5 0 0 1 69.8 49H66.2A1.5 1.5 0 0 1 64.7 47.5V44.5A1.5 1.5 0 0 1 66.2 43Z" fill="#D5F5FF"/>
+<path d="M75 43H78.6A1.5 1.5 0 0 1 80.1 44.5V47.5A1.5 1.5 0 0 1 78.6 49H75A1.5 1.5 0 0 1 73.5 47.5V44.5A1.5 1.5 0 0 1 75 43Z" fill="#95B4FF"/>
+<path d="M35.5 52H39.1A1.5 1.5 0 0 1 40.6 53.5V56.5A1.5 1.5 0 0 1 39.1 58H35.5A1.5 1.5 0 0 1 34 56.5V53.5A1.5 1.5 0 0 1 35.5 52Z" fill="#D5F5FF"/>
+<path d="M45 52H48.6A1.5 1.5 0 0 1 50.1 53.5V56.5A1.5 1.5 0 0 1 48.6 58H45A1.5 1.5 0 0 1 43.5 56.5V53.5A1.5 1.5 0 0 1 45 52Z" fill="#95B4FF"/>
+<path d="M54.5 52H58.1A1.5 1.5 0 0 1 59.6 53.5V56.5A1.5 1.5 0 0 1 58.1 58H54.5A1.5 1.5 0 0 1 53 56.5V53.5A1.5 1.5 0 0 1 54.5 52Z" fill="#B5A4FF"/>
+<path d="M64 52H67.6A1.5 1.5 0 0 1 69.1 53.5V56.5A1.5 1.5 0 0 1 67.6 58H64A1.5 1.5 0 0 1 62.5 56.5V53.5A1.5 1.5 0 0 1 64 52Z" fill="#D5F5FF"/>
+<path d="M73.5 52H77.1A1.5 1.5 0 0 1 78.6 53.5V56.5A1.5 1.5 0 0 1 77.1 58H73.5A1.5 1.5 0 0 1 72 56.5V53.5A1.5 1.5 0 0 1 73.5 52Z" fill="#95B4FF"/>
+<path d="M35.5 61H39.1A1.5 1.5 0 0 1 40.6 62.5V65.5A1.5 1.5 0 0 1 39.1 67H35.5A1.5 1.5 0 0 1 34 65.5V62.5A1.5 1.5 0 0 1 35.5 61Z" fill="#95B4FF"/>
+<path d="M45 61H48.6A1.5 1.5 0 0 1 50.1 62.5V65.5A1.5 1.5 0 0 1 48.6 67H45A1.5 1.5 0 0 1 43.5 65.5V62.5A1.5 1.5 0 0 1 45 61Z" fill="#73D6FF"/>
+<path d="M54.5 61H58.1A1.5 1.5 0 0 1 59.6 62.5V65.5A1.5 1.5 0 0 1 58.1 67H54.5A1.5 1.5 0 0 1 53 65.5V62.5A1.5 1.5 0 0 1 54.5 61Z" fill="#D5F5FF"/>
+<path d="M64 61H67.6A1.5 1.5 0 0 1 69.1 62.5V65.5A1.5 1.5 0 0 1 67.6 67H64A1.5 1.5 0 0 1 62.5 65.5V62.5A1.5 1.5 0 0 1 64 61Z" fill="#95B4FF"/>
+<path d="M73.5 61H77.1A1.5 1.5 0 0 1 78.6 62.5V65.5A1.5 1.5 0 0 1 77.1 67H73.5A1.5 1.5 0 0 1 72 65.5V62.5A1.5 1.5 0 0 1 73.5 61Z" fill="#73D6FF"/>
+<path d="M41.1 69.7H66.9A2.1 2.1 0 0 1 69 71.8V71.9A2.1 2.1 0 0 1 66.9 74H41.1A2.1 2.1 0 0 1 39 71.9V71.8A2.1 2.1 0 0 1 41.1 69.7Z" fill="#B5DFFF"/>
+<path d="M77 17L80.5 24.5L88 28L80.5 31.5L77 39L73.5 31.5L66 28L73.5 24.5Z" fill="url(#accent)"/>
+<path d="M88 17L89.5 21L93.5 22.5L89.5 24L88 28L86.5 24L82.5 22.5L86.5 21Z" fill="#F6FCFF" opacity=".85"/>
+</svg>
