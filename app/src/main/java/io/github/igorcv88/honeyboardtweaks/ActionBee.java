@@ -29,8 +29,10 @@ final class ActionBee implements InvocationHandler {
             case "setSleep" -> { sleeping = (boolean) args[0]; yield null; }
             case "execute" -> {
                 module.execute(action);
-                if (args != null && args.length == 1 && args[0] != null)
-                    Reflect.method(args[0].getClass(), "invoke").invoke(args[0]);
+                if (args != null && args.length == 1 && args[0] != null) {
+                    try { Reflect.method(args[0].getClass(), "invoke").invoke(args[0]); }
+                    catch (Throwable error) { module.failure("toolbar callback " + action.key, error); }
+                }
                 yield null;
             }
             default -> {

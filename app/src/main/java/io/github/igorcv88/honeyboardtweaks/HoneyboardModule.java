@@ -18,6 +18,10 @@ public final class HoneyboardModule extends XposedModule {
     private WeakReference<InputMethodService> ime = new WeakReference<>(null);
     private final Set<String> reported = java.util.concurrent.ConcurrentHashMap.newKeySet();
     private volatile boolean supported;
+    private NativeHistoryActions historyActions;
+    private final java.util.concurrent.atomic.AtomicLong actionSequence = new java.util.concurrent.atomic.AtomicLong();
+    private final ThreadLocal<int[]> historyEvents = new ThreadLocal<>();
+    private final java.util.concurrent.atomic.AtomicInteger lastPanelCount = new java.util.concurrent.atomic.AtomicInteger(-1);
 
     @Override public void onModuleLoaded(ModuleLoadedParam param) {
         if ((getFrameworkProperties() & PROP_CAP_REMOTE) != 0) prefs = getRemotePreferences(Config.GROUP);
@@ -26,6 +30,7 @@ public final class HoneyboardModule extends XposedModule {
     @Override public void onPackageLoaded(PackageLoadedParam param) {
         if (!Config.TARGET.equals(param.getPackageName())) return;
         try {
+            long hashStarted = System.nanoTime();
             // Obfuscated adapters are restricted to the exact analyzed base APK.
             java.security.MessageDigest sha = java.security.MessageDigest.getInstance("SHA-256");
             try (java.io.InputStream input = new java.io.FileInputStream(param.getApplicationInfo().sourceDir)) {
@@ -39,13 +44,17 @@ public final class HoneyboardModule extends XposedModule {
             }
             supported = digest.toString().equals(
                     "6a011ff31270a53dcc53b891009956a13f4de1ba3d271a6ca4316a6215fae840");
-            status(supported ? "DZIF APK identity matched" : "unsupported APK: hooks disabled");
+            status((supported ? "DZIF APK identity matched" : "unsupported APK: hooks disabled")
+                    + " hash_ms=" + (System.nanoTime() - hashStarted) / 1_000_000);
         } catch (Throwable error) { failure("APK identity", error); }
     }
     @Override public void onPackageReady(PackageReadyParam param) {
         if (!Config.TARGET.equals(param.getPackageName()) || !supported || prefs == null) return;
         ClassLoader loader = param.getClassLoader();
         install("IME lifecycle", () -> lifecycle(loader));
+        historyActions = new NativeHistoryActions(loader);
+        install("history key diagnostics", () -> historyKeyDiagnostics(loader));
+        install("clipboard counts", () -> clipboardCounts(loader));
         install("native toolbar", () -> new NativeToolbar(this, loader).install());
         install("clipboard policy", () -> clipboard(loader));
         install("hidden settings", () -> hiddenSettings(loader));
@@ -92,8 +101,15 @@ public final class HoneyboardModule extends XposedModule {
             for (Object item : clips) entries.add(entry(item));
             List<Long> victims = ClipboardPolicy.victims(entries, entry(incoming),
                     Config.capacity(prefs), Config.enabled(prefs, "keep_history", true));
-            for (long id : victims) remove.invoke(storage, id);
-            if (!victims.isEmpty()) notify.invoke(repository, user);
+            ClipboardEviction.Report eviction = ClipboardEviction.run(victims, id -> remove.invoke(storage, id));
+            status("clipboard trim user=" + user + " db_before=" + clips.size()
+                    + " capacity=" + Config.capacity(prefs) + " planned=" + eviction.planned()
+                    + " completed=" + eviction.completed() + " failure=" + eviction.failureType());
+            // After any deletion attempt, do not let PROTECTIVE replay the stock trimming policy.
+            if (eviction.planned() > 0) {
+                try { notify.invoke(repository, user); }
+                catch (Throwable error) { failure("clipboard trim notification", error); }
+            }
             once("clipboard policy executed"); return null;
         });
         // Prevent precompiled insertion code from bypassing q.
@@ -120,19 +136,90 @@ public final class HoneyboardModule extends XposedModule {
     }
     SharedPreferences preferences() { return prefs; }
     void execute(EditAction action) {
+        long attempt = actionSequence.incrementAndGet();
         InputMethodService service = ime.get();
-        if (service == null || !Config.actions(prefs).contains(action)) return;
+        if (service == null || !Config.actions(prefs).contains(action)) {
+            status("action id=" + attempt + " action=" + action.key + " connection=false or disabled");
+            return;
+        }
+        android.view.inputmethod.InputConnection connection = service.getCurrentInputConnection();
+        if (connection == null) {
+            status("action id=" + attempt + " action=" + action.key + " connection=false"); return;
+        }
+        int[] events = {0, 0};
+        historyEvents.set(events);
         try {
-            boolean accepted = action.execute(service.getCurrentInputConnection());
-            once("toolbar action executed: " + action.key);
-            if (!accepted) android.widget.Toast.makeText(service,
-                    action.label + " is not supported by this editor", android.widget.Toast.LENGTH_SHORT).show();
-        } catch (Throwable error) { failure("toolbar action " + action.key, error); }
+            if (action == EditAction.UNDO || action == EditAction.REDO) {
+                HistoryDispatcher.Outcome outcome = HistoryDispatcher.dispatch(action, historyActions,
+                        a -> a.sendShortcut(connection, Config.enabled(prefs, "redo_shift_z", false)),
+                        Config.enabled(prefs, "history_shortcuts", false));
+                status("action id=" + attempt + " action=" + action.key + " connection=true route=" + outcome
+                        + " native_events=" + events[0] + " accepted_events=" + events[1]
+                        + " editor_effect=unverified");
+                if (outcome == HistoryDispatcher.Outcome.NATIVE_BLOCKED) toast(service,
+                        "Samsung blocked this action while composing or editing an internal field");
+                else if (outcome == HistoryDispatcher.Outcome.ERROR || outcome == HistoryDispatcher.Outcome.REJECTED)
+                    toast(service, action.label + " command could not be dispatched");
+            } else {
+                boolean accepted = action.execute(connection);
+                status("action id=" + attempt + " action=" + action.key
+                        + " connection=true route=context_menu command_accepted=" + accepted
+                        + " editor_effect=unverified");
+                if (!accepted) toast(service, action.label + " is not supported by this editor");
+            }
+        } catch (Throwable error) { failure("action id=" + attempt + " " + action.key, error); }
+        finally { historyEvents.remove(); }
     }
-    void status(String message) { log(Log.INFO, TAG, message); }
+    private static void toast(InputMethodService service, String message) {
+        android.widget.Toast.makeText(service, message, android.widget.Toast.LENGTH_SHORT).show();
+    }
+    private void historyKeyDiagnostics(ClassLoader loader) throws Throwable {
+        Class<?> wrapper = Class.forName("jh.a", false, loader);
+        hook(Reflect.method(wrapper, "sendKeyEvent", android.view.KeyEvent.class))
+                .setExceptionMode(ExceptionMode.PROTECTIVE).intercept(chain -> {
+                    Object result = chain.proceed();
+                    int[] trace = historyEvents.get();
+                    if (trace != null) {
+                        trace[0]++;
+                        if (Boolean.TRUE.equals(result)) trace[1]++;
+                    }
+                    return result;
+                });
+    }
+    private void clipboardCounts(ClassLoader loader) throws Throwable {
+        Class<?> clip = Class.forName(Config.TARGET + ".icecone.clipboard.data.entity.Clip", false, loader);
+        Class<?> dao = Class.forName("k2.h", false, loader);
+        Method query = Reflect.method(dao, "a", int.class);
+        hook(Reflect.method(dao, "b", clip)).setExceptionMode(ExceptionMode.PROTECTIVE).intercept(chain -> {
+            Object result = chain.proceed();
+            // Diagnostics may fail after a successful insert: never rethrow/replay that insert.
+            try {
+                int user = (int) Reflect.call(chain.getArg(0), "getUserId");
+                List<?> clips = (List<?>) query.invoke(chain.getThisObject(), user);
+                int pinned = 0;
+                if (clips != null) for (Object item : clips)
+                    if ((boolean) Reflect.call(item, "getPinned")) pinned++;
+                status("clipboard inserted user=" + user + " db_count=" + (clips == null ? -1 : clips.size())
+                        + " pinned=" + pinned + " configured_capacity=" + Config.capacity(prefs));
+            } catch (Throwable error) { failure("clipboard insert count", error); }
+            return result;
+        });
+        Class<?> viewModel = Class.forName(Config.TARGET + ".icecone.clipboard.viewmodel.ClipboardViewModel", false, loader);
+        hook(Reflect.method(viewModel, "getClipItems")).setExceptionMode(ExceptionMode.PROTECTIVE).intercept(chain -> {
+            Object result = chain.proceed();
+            if (result instanceof List<?> items && lastPanelCount.getAndSet(items.size()) != items.size())
+                status("clipboard viewmodel_count=" + items.size() + " visible_tiles=unverified");
+            return result;
+        });
+    }
+    void status(String message) {
+        log(Log.INFO, TAG, message);
+        Log.i(TAG, message);
+    }
     void once(String message) { if (reported.add(message)) status(message); }
     void failure(String stage, Throwable error) {
         // Exceptions can contain editor/clipboard payloads; only log their type.
         log(Log.ERROR, TAG, stage + ": " + error.getClass().getSimpleName());
+        Log.e(TAG, stage + ": " + error.getClass().getSimpleName());
     }
 }
