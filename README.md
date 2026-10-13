@@ -33,7 +33,7 @@ Revealing a preference does not implement an absent backend.
 
 ## Install and use
 
-1. Install the debug APK from the build artifact.
+1. Install the signed APK from GitHub Releases.
 2. Enable HoneyBoard Tweaks in an LSPosed framework implementing **libxposed API 102**
    and remote preferences. Scope: **Samsung Keyboard only**.
 3. Open HoneyBoard Tweaks and confirm “Framework connected”.
@@ -57,7 +57,26 @@ JDK 17, Android SDK 37 (required by libxposed 102):
 ./gradlew testDebugUnitTest lintDebug assembleDebug
 ```
 
-GitHub Actions performs these checks and uploads the APK. Device validation is still pending:
+Only one GitHub workflow exists: **Release APK**, manually dispatched on main. Pushes,
+pull requests and tags do not trigger workflows. It runs unit tests/lint, builds an unsigned
+APK, signs and verifies it, then attaches the APK and SHA-256 to GitHub Releases. There are
+no Actions artifact uploads. Versions increment automatically: v0.1.1, v0.1.2, and so on.
+
+Add these repository secrets under Settings → Secrets and variables → Actions:
+
+| Secret | Value |
+|---|---|
+| KEYSTORE_BASE64 | Base64-encoded release keystore |
+| KEYSTORE_PASSWORD | Keystore password |
+| KEY_ALIAS | Signing key alias |
+| KEY_PASSWORD | Signing key password |
+
+Keep the same release key for future updates. The release key differs from the initial debug
+APK key; moving from that debug APK to the first signed release requires uninstalling it first.
+After merging and adding the secrets, open Actions → Release APK → Run workflow → main.
+The GitHub token supplied by Actions publishes the release; no personal access token is needed.
+
+Device validation is still pending:
 successful unit tests/build do not demonstrate hook execution or visual compatibility.
 See [DZIF mapping](docs/DZIF-hooks.md) and [device validation](docs/device-validation.md).
 

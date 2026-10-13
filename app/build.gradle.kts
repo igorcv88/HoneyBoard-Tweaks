@@ -6,8 +6,8 @@ android {
         applicationId = "io.github.igorcv88.honeyboardtweaks"
         minSdk = 33
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = providers.gradleProperty("releaseVersionCode").orElse("1").get().toInt()
+        versionName = providers.gradleProperty("releaseVersionName").orElse("0.1.0").get()
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
