@@ -7,7 +7,7 @@
   <a href="https://github.com/igorcv88/HoneyBoard-Tweaks/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/igorcv88/HoneyBoard-Tweaks/total" /></a>
   <a href="https://github.com/igorcv88/HoneyBoard-Tweaks/actions/workflows/release.yml"><img alt="Release workflow" src="https://github.com/igorcv88/HoneyBoard-Tweaks/actions/workflows/release.yml/badge.svg?branch=main" /></a>
   <img alt="Android 17" src="https://img.shields.io/badge/Android-17-3DDC84?logo=android&amp;logoColor=white" />
-  <img alt="One UI 9 beta" src="https://img.shields.io/badge/One%20UI-9%20beta-588BEE" />
+  <img alt="One UI 9 stable" src="https://img.shields.io/badge/One%20UI-9%20stable-588BEE" />
   <img alt="libxposed API 102" src="https://img.shields.io/badge/libxposed-API%20102-9475E8" />
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/github/license/igorcv88/HoneyBoard-Tweaks" /></a>
 </p>
@@ -47,7 +47,7 @@ The toolbar uses Samsung's own Bee/toolbar UI, so its items participate in the k
 | Item | Supported target |
 | --- | --- |
 | Device used for mapping | Galaxy S25 Ultra **SM-S938B** |
-| Firmware | **S938BXXUCDZIF**, One UI 9 beta |
+| Firmware | **S938BXXUCDZIF**, One UI 9 stable |
 | Android | **17 (API 37)** |
 | Samsung Keyboard | **5.9.40.75** |
 | Module framework | LSPosed-compatible **libxposed API 102** and remote preferences |
@@ -89,7 +89,7 @@ Requires **JDK 17** and **Android SDK Platform 37**.
 ./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug
 ```
 
-The [Release APK workflow](.github/workflows/release.yml) runs **manually** on `main`; pushes and pull requests do not publish APKs. It tests and lints the project, builds the release APK, verifies its module metadata, signs it using GitHub Actions secrets, and uploads the APK with a SHA-256 checksum to Releases.
+The [Release APK workflow](.github/workflows/release.yml) runs **manually** on `main`; pushes and pull requests do not publish APKs. It tests and lints the project, builds the release APK, verifies its module metadata, signs it using GitHub Actions secrets, and uploads the APK with a SHA-256 checksum to Releases. The workflow reuses Gradle's dependency and build caches via `gradle/actions/setup-gradle`, installs Android SDK packages only when missing from the runner, and does not create a second Gradle cache or upload intermediate APK artifacts.
 
 Release signing requires `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_ALIAS` and `KEY_PASSWORD` repository secrets. Keep the same signing key for subsequent upgrades.
 
