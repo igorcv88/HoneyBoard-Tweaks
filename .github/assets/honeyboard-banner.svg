@@ -36,7 +36,7 @@
 <text x="327" y="194" fill="#C3CCE2" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25">Samsung Keyboard, with native editing tools</text>
 <text x="327" y="243" fill="#9CAAC7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">Toolbar actions · clipboard retention · per-feature settings</text>
 <rect x="327" y="269" width="140" height="32" rx="16" fill="#153956" stroke="#367BA4" stroke-opacity=".7"/>
-<text x="397" y="290" fill="#A5E7FF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="middle">One UI 9 beta</text>
+<text x="397" y="290" fill="#A5E7FF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="middle">One UI 9 stable</text>
 <rect x="479" y="269" width="145" height="32" rx="16" fill="#2B2051" stroke="#6E5DB1" stroke-opacity=".7"/>
 <text x="551.5" y="290" fill="#D1C2FF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="middle">LSPosed API 102</text>
 </svg>
