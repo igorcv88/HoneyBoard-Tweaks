@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+<title id="title">HoneyBoard Tweaks</title>
+<desc id="desc">Native Samsung Keyboard editing tools and extended clipboard history with LSPosed.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0B1222"/><stop offset=".6" stop-color="#141A32"/><stop offset="1" stop-color="#24192D"/></linearGradient>
+<radialGradient id="light" cx=".25" cy=".52" r=".62"><stop stop-color="#496EF5" stop-opacity=".24"/><stop offset="1" stop-color="#496EF5" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1200" height="360" rx="28" fill="url(#bg)"/>
+<rect width="1200" height="360" rx="28" fill="url(#light)"/>
+<circle cx="177" cy="181" r="125" fill="#8FAAFF" fill-opacity=".05" stroke="#B3A1F7" stroke-opacity=".14" stroke-width="2"/>
+<g transform="translate(60 58) scale(2.15)">
+<path d="M24 0H84A24 24 0 0 1 108 24V84A24 24 0 0 1 84 108H24A24 24 0 0 1 0 84V24A24 24 0 0 1 24 0Z" fill="#12203B" stroke="#657CA7" stroke-opacity=".6" stroke-width="1.5"/>
+<path d="M32.5 29.5H75.5A13 13 0 0 1 88.5 42.5V68.5A13 13 0 0 1 75.5 81.5H32.5A13 13 0 0 1 19.5 68.5V42.5A13 13 0 0 1 32.5 29.5Z" fill="#608BF6" opacity=".16"/>
+<path d="M32 32H76A10 10 0 0 1 86 42V69A10 10 0 0 1 76 79H32A10 10 0 0 1 22 69V42A10 10 0 0 1 32 32Z" fill="#304B83" stroke="#8EDFFF" stroke-width="1.3"/>
+<path d="M33 36H75A7 7 0 0 1 82 43V68A7 7 0 0 1 75 75H33A7 7 0 0 1 26 68V43A7 7 0 0 1 33 36Z" fill="#162843" stroke="#83B4FF" stroke-width=".7"/>
+<path d="M31.25 37H76.75A1.25 1.25 0 0 1 78 38.25V38.25A1.25 1.25 0 0 1 76.75 39.5H31.25A1.25 1.25 0 0 1 30 38.25V38.25A1.25 1.25 0 0 1 31.25 37Z" fill="#87E8FF"/>
+<path d="M31 43H34.6A1.5 1.5 0 0 1 36.1 44.5V47.5A1.5 1.5 0 0 1 34.6 49H31A1.5 1.5 0 0 1 29.5 47.5V44.5A1.5 1.5 0 0 1 31 43Z" fill="#73D6FF"/>
+<path d="M39.8 43H43.4A1.5 1.5 0 0 1 44.9 44.5V47.5A1.5 1.5 0 0 1 43.4 49H39.8A1.5 1.5 0 0 1 38.3 47.5V44.5A1.5 1.5 0 0 1 39.8 43Z" fill="#D5F5FF"/>
+<path d="M48.6 43H52.2A1.5 1.5 0 0 1 53.7 44.5V47.5A1.5 1.5 0 0 1 52.2 49H48.6A1.5 1.5 0 0 1 47.1 47.5V44.5A1.5 1.5 0 0 1 48.6 43Z" fill="#95B4FF"/>
+<path d="M57.4 43H61A1.5 1.5 0 0 1 62.5 44.5V47.5A1.5 1.5 0 0 1 61 49H57.4A1.5 1.5 0 0 1 55.9 47.5V44.5A1.5 1.5 0 0 1 57.4 43Z" fill="#73D6FF"/>
+<path d="M66.2 43H69.8A1.5 1.5 0 0 1 71.3 44.5V47.5A1.5 1.5 0 0 1 69.8 49H66.2A1.5 1.5 0 0 1 64.7 47.5V44.5A1.5 1.5 0 0 1 66.2 43Z" fill="#D5F5FF"/>
+<path d="M75 43H78.6A1.5 1.5 0 0 1 80.1 44.5V47.5A1.5 1.5 0 0 1 78.6 49H75A1.5 1.5 0 0 1 73.5 47.5V44.5A1.5 1.5 0 0 1 75 43Z" fill="#95B4FF"/>
+<path d="M35.5 52H39.1A1.5 1.5 0 0 1 40.6 53.5V56.5A1.5 1.5 0 0 1 39.1 58H35.5A1.5 1.5 0 0 1 34 56.5V53.5A1.5 1.5 0 0 1 35.5 52Z" fill="#D5F5FF"/>
+<path d="M45 52H48.6A1.5 1.5 0 0 1 50.1 53.5V56.5A1.5 1.5 0 0 1 48.6 58H45A1.5 1.5 0 0 1 43.5 56.5V53.5A1.5 1.5 0 0 1 45 52Z" fill="#95B4FF"/>
+<path d="M54.5 52H58.1A1.5 1.5 0 0 1 59.6 53.5V56.5A1.5 1.5 0 0 1 58.1 58H54.5A1.5 1.5 0 0 1 53 56.5V53.5A1.5 1.5 0 0 1 54.5 52Z" fill="#B5A4FF"/>
+<path d="M64 52H67.6A1.5 1.5 0 0 1 69.1 53.5V56.5A1.5 1.5 0 0 1 67.6 58H64A1.5 1.5 0 0 1 62.5 56.5V53.5A1.5 1.5 0 0 1 64 52Z" fill="#D5F5FF"/>
+<path d="M73.5 52H77.1A1.5 1.5 0 0 1 78.6 53.5V56.5A1.5 1.5 0 0 1 77.1 58H73.5A1.5 1.5 0 0 1 72 56.5V53.5A1.5 1.5 0 0 1 73.5 52Z" fill="#95B4FF"/>
+<path d="M35.5 61H39.1A1.5 1.5 0 0 1 40.6 62.5V65.5A1.5 1.5 0 0 1 39.1 67H35.5A1.5 1.5 0 0 1 34 65.5V62.5A1.5 1.5 0 0 1 35.5 61Z" fill="#95B4FF"/>
+<path d="M45 61H48.6A1.5 1.5 0 0 1 50.1 62.5V65.5A1.5 1.5 0 0 1 48.6 67H45A1.5 1.5 0 0 1 43.5 65.5V62.5A1.5 1.5 0 0 1 45 61Z" fill="#73D6FF"/>
+<path d="M54.5 61H58.1A1.5 1.5 0 0 1 59.6 62.5V65.5A1.5 1.5 0 0 1 58.1 67H54.5A1.5 1.5 0 0 1 53 65.5V62.5A1.5 1.5 0 0 1 54.5 61Z" fill="#D5F5FF"/>
+<path d="M64 61H67.6A1.5 1.5 0 0 1 69.1 62.5V65.5A1.5 1.5 0 0 1 67.6 67H64A1.5 1.5 0 0 1 62.5 65.5V62.5A1.5 1.5 0 0 1 64 61Z" fill="#95B4FF"/>
+<path d="M73.5 61H77.1A1.5 1.5 0 0 1 78.6 62.5V65.5A1.5 1.5 0 0 1 77.1 67H73.5A1.5 1.5 0 0 1 72 65.5V62.5A1.5 1.5 0 0 1 73.5 61Z" fill="#73D6FF"/>
+<path d="M41.1 69.7H66.9A2.1 2.1 0 0 1 69 71.8V71.9A2.1 2.1 0 0 1 66.9 74H41.1A2.1 2.1 0 0 1 39 71.9V71.8A2.1 2.1 0 0 1 41.1 69.7Z" fill="#B5DFFF"/>
+<path d="M77 17L80.5 24.5L88 28L80.5 31.5L77 39L73.5 31.5L66 28L73.5 24.5Z" fill="#B19AFF"/><path d="M88 17L89.5 21L93.5 22.5L89.5 24L88 28L86.5 24L82.5 22.5L86.5 21Z" fill="#F9FDFF"/></g>
+<text x="324" y="145" fill="#F0F6FC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="57" font-weight="700" letter-spacing="-1.5">HoneyBoard Tweaks</text>
+<text x="327" y="194" fill="#C3CCE2" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25">Samsung Keyboard, with native editing tools</text>
+<text x="327" y="243" fill="#9CAAC7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">Toolbar actions · clipboard retention · per-feature settings</text>
+<rect x="327" y="269" width="140" height="32" rx="16" fill="#153956" stroke="#367BA4" stroke-opacity=".7"/>
+<text x="397" y="290" fill="#A5E7FF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="middle">One UI 9 beta</text>
+<rect x="479" y="269" width="145" height="32" rx="16" fill="#2B2051" stroke="#6E5DB1" stroke-opacity=".7"/>
+<text x="551.5" y="290" fill="#D1C2FF" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" text-anchor="middle">LSPosed API 102</text>
+</svg>
